@@ -12,13 +12,14 @@
 
 #include "libftprintf.h"
 
-unsigned int ft_print_pointer(va_list args)
+unsigned int	ft_print_pointer(va_list args)
 {
-	size_t	n;
-	size_t	len;
+	unsigned long	n;
+	size_t			len;
+
 	n = va_arg(args, unsigned long);
-	len = 2 + ft_count_digits(n);
+	len = 2 + ft_count_digits_pointer(n);
 	ft_putstr_fd("0x", 1);
-	ft_print_hex(n);
-	return(len);
+	ft_print_hex_pointer(n);
+	return (len);
 }

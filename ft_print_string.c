@@ -12,15 +12,18 @@
 
 #include "libftprintf.h"
 
-unsigned int ft_print_string(va_list args)
+unsigned int	ft_print_string(va_list args)
 {
 	char	*str;
 	size_t	len;
-	
-	if (!args)
-		return (0);
+
 	str = va_arg(args, char *);
+	if (str == NULL)
+	{
+		ft_putstr_fd("(null)", 1);
+		return (6);
+	}
 	len = ft_strlen(str);
 	ft_putstr_fd(str, 1);
-	return(len);
+	return (len);
 }

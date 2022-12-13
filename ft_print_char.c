@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-unsigned int ft_print_char(va_list args)
+unsigned int	ft_print_char(va_list args)
 {
 	if (args == 0)
 		return (0);
@@ -20,7 +20,7 @@ unsigned int ft_print_char(va_list args)
 	return (1);
 }
 
-unsigned int ft_print_percent(void)
+unsigned int	ft_print_percent(void)
 {
 	ft_putchar_fd('%', 1);
 	return (1);

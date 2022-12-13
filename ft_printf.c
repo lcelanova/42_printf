@@ -12,24 +12,24 @@
 
 #include "libftprintf.h"
 
-int ft_conditions(va_list args, const char c)
+int	ft_conditions(va_list args, const char c)
 {
 	if (c == 'c')
-		return(ft_print_char(args));
-	else if (c == 'd' || c == 'i') 
-		return(ft_print_number(args));
+		return (ft_print_char(args));
+	else if (c == 'd' || c == 'i')
+		return (ft_print_number(args));
 	else if (c == 'x' || c == 'X')
-		return(ft_print_hexadecimal(c, args));
+		return (ft_print_hexadecimal(c, args));
 	else if (c == '%')
-		return(ft_print_percent());
+		return (ft_print_percent());
 	else if (c == 'u')
-		return(ft_print_unsigned(args));
+		return (ft_print_unsigned(args));
 	else if (c == 'p')
-		return(ft_print_pointer(args));
+		return (ft_print_pointer(args));
 	else if (c == 's')
-		return(ft_print_string(args));
-	else 
-		return(0);
+		return (ft_print_string(args));
+	else
+		return (0);
 }
 
 int	ft_printf(char const *str, ...)
@@ -37,17 +37,17 @@ int	ft_printf(char const *str, ...)
 	va_list	args;
 	size_t	i;
 	size_t	bytes;
-	
+
 	va_start(args, str);
 	i = 0;
 	bytes = 0;
 	while (i < ft_strlen(str))
 	{
 		if (str[i] == '%')
-			{
-				bytes += ft_conditions(args, str[i + 1]);
-				i++;
-			}
+		{
+			bytes += ft_conditions(args, str[i + 1]);
+			i++;
+		}
 		else
 		{
 			ft_putchar_fd(str[i], 1);
@@ -59,19 +59,19 @@ int	ft_printf(char const *str, ...)
 	return (bytes);
 }
 
+/*
 int main(void)
 {
-/* 	char a = 'C';
+ 	char a = 'C';
 	int b = 4;
 	unsigned long c = 4;
 	int *d = &b;
-	char *e = "hello"; */
+	char *e = "hello"; 
 	
 //char
-	ft_printf(" %c %c %c \n", '1', 0, 'p');
+	ft_printf(" %c %c %c \n", '1', 0, '1');
 	printf(" %c %c %c \n", '1', 0, '1');
 }
-/*
 //decimal
 	ft_printf("%d\n", ft_printf("decimal: %d\n", b));
 	printf("%d\n", printf("decimal: %d\n", b));

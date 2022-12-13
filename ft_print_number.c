@@ -12,24 +12,57 @@
 
 #include "libftprintf.h"
 
-unsigned int ft_print_number(va_list args)
+unsigned int	ft_print_number(va_list args)
 {
 	size_t	n;
 	size_t	len;
+
 	n = va_arg(args, int);
 	len = ft_count_digits(n);
 	ft_putnbr_fd(n, 1);
-	return(len);
+	return (len);
 }
 
-unsigned int ft_print_unsigned(va_list args)
+unsigned int	ft_print_unsigned(va_list args)
 {
 	size_t	n;
 	size_t	len;
+
 	n = va_arg(args, unsigned long);
-	len = ft_count_digits(n);
+	len = ft_count_digits_un(n);
 	ft_putunsigned_fd(n, 1);
-	return(len);
+	return (len);
+}
+
+void	ft_putunsigned_fd(unsigned int n, int fd)
+{
+	unsigned long	number;
+
+	number = n;
+	if (number > 9)
+	{
+		ft_putunsigned_fd(number / 10, fd);
+		number %= 10;
+	}
+	ft_putchar_fd(number + '0', fd);
+}
+
+size_t	ft_count_digits_un(unsigned int n)
+{
+	size_t	digits;
+
+	digits = 0;
+	if (n <= 0)
+	{
+		n *= -1;
+		digits++;
+	}
+	while (n > 0)
+	{
+		n /= 10;
+		digits++;
+	}
+	return (digits);
 }
 
 size_t	ft_count_digits(long n)
