@@ -31,12 +31,13 @@ void			ft_putunsigned_fd(unsigned int n, int fd);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_print_hex(char c, unsigned int n);
-size_t			ft_count_digits(long n);
-size_t			ft_strlen(const char *s);
 int				ft_printf(char const *str, ...);
 int				ft_conditions(va_list args, const char c);
 void			ft_print_hex_pointer(unsigned long n);
+size_t			ft_count_digits(long n);
+size_t			ft_strlen(const char *s);
 size_t			ft_count_digits_pointer(unsigned long n);
 size_t			ft_count_digits_hex(unsigned int n);
+size_t			ft_count_digits_un(unsigned int n);
 
 #endif
