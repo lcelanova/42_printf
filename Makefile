@@ -10,15 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
-CFLAGS += -Wall -Wextra -Werror -Iinclude
-AR = ar
+NAME= libftprintf.a
 
-NAME = libftprintf.a
+CC= gcc
+CFLAGS= -Wall -Wextra -Werror
+RM= rm -f
 
-HEADER = libftprintf.h
 
-SRC		 =	 ft_printf.c \
+SRCS		 =	 ft_printf.c \
 			 ft_print_number.c \
 			 ft_print_pointer.c \
 			 ft_print_char.c \
@@ -30,29 +29,16 @@ SRC		 =	 ft_printf.c \
 			 ft_strlen.c \
 			 
 
-OBJS = $(SRC:.c=.o)
+OBJS = $(SRCS:.c=.o) 
+
+$(NAME) : $(OBJS)
+	@ar crs $(NAME) $(OBJS) 
 
 all: $(NAME)
 
-$(NAME): libft $(OBJS) $(HEADER) $(LIBFT_HEADER)
-	$(AR) -rcs $(NAME) $(OBJS)
-
-debug: CFLAGS += -g
-debug: fclean all
-	$(CC) $(CFLAGS) test.c $(NAME) -o test
-
-.o: .c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-bonus: all
-
 clean:
-	rm -f $(OBJS)
-	rm -f $(OBJS_LIBFT)
-
+	@$(RM) $(OBJS)
 fclean: clean
-	rm -rf $(NAME)
-
+	@rm -f $(NAME)
 re: fclean all
-
-.PHONY: all clean fclean re bonus debug libft
+.PHONY: all re clean fclean
